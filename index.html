@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>La Leña — Cocina de Fuego, Zapopan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --burnt:#8B2500; --ember:#C84B0F; --warm:#E8874A; --cream:#FDF6EE;
+      --sand:#F5E6D3; --dark:#1C1008; --text:#2D1B0E; --soft:#6B4226; --muted:#A07850;
+      --white:#ffffff; --r:12px;
+      --shadow:0 4px 24px rgba(28,16,8,.15); --shadow-lg:0 12px 48px rgba(28,16,8,.22);
+      --fh:'Fraunces',serif; --fb:'DM Sans',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth} body{font-family:var(--fb);background:var(--cream);color:var(--text);overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 6vw;background:rgba(253,246,238,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,37,0,.1);transition:box-shadow .3s}
+    nav.sc{box-shadow:var(--shadow)}
+    .logo{font-family:var(--fh);font-size:1.4rem;color:var(--burnt);text-decoration:none;font-style:italic}
+    .nl{display:flex;gap:28px;list-style:none}
+    .nl a{text-decoration:none;color:var(--soft);font-size:.88rem;font-weight:500;transition:color .2s}
+    .nl a:hover{color:var(--burnt)}
+    .ncta{background:var(--burnt)!important;color:#fff!important;padding:9px 22px;border-radius:50px;transition:background .2s,transform .15s!important}
+    .ncta:hover{background:var(--ember)!important;transform:translateY(-1px)}
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:110px 6vw 70px;background:linear-gradient(160deg,var(--cream) 0%,var(--sand) 60%,#f0d9c0 100%);position:relative;overflow:hidden}
+    .hero::before{content:'🔥';position:absolute;right:5%;bottom:10%;font-size:18rem;opacity:.06;pointer-events:none}
+    .hi{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid rgba(139,37,0,.2);color:var(--burnt);padding:5px 15px;border-radius:50px;font-size:.78rem;font-weight:500;margin-bottom:18px;box-shadow:0 2px 12px rgba(139,37,0,.08);animation:fu .6s ease both}
+    h1{font-family:var(--fh);font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1.1;margin-bottom:18px;animation:fu .6s .1s ease both}
+    h1 em{font-style:italic;color:var(--burnt)}
+    .sub{font-size:1rem;color:var(--soft);line-height:1.7;margin-bottom:32px;max-width:440px;animation:fu .6s .2s ease both}
+    .acts{display:flex;gap:12px;flex-wrap:wrap;animation:fu .6s .3s ease both}
+    .bp{background:var(--burnt);color:#fff;padding:14px 28px;border-radius:50px;font-size:.92rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+    .bp:hover{background:var(--ember);transform:translateY(-2px);box-shadow:0 6px 24px rgba(139,37,0,.28)}
+    .bs{background:transparent;color:var(--burnt);padding:14px 28px;border-radius:50px;font-size:.92rem;font-weight:600;text-decoration:none;border:2px solid rgba(139,37,0,.25);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+    .bs:hover{border-color:var(--burnt);background:var(--sand)}
+    .stats{display:flex;gap:28px;margin-top:36px;animation:fu .6s .4s ease both}
+    .sn{font-family:var(--fh);font-size:2rem;color:var(--burnt);line-height:1}
+    .sl{font-size:.73rem;color:var(--muted);margin-top:3px}
+    .hv{display:flex;flex-direction:column;gap:14px;animation:fu .7s .2s ease both}
+    .hcard{background:var(--white);border-radius:18px;padding:24px;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:16px}
+    .hav{width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,var(--sand),#f0d9c0);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0}
+    .hinfo h3{font-family:var(--fh);font-size:1.1rem;margin-bottom:3px}
+    .hinfo p{font-size:.8rem;color:var(--soft)}
+    .htag{display:inline-block;background:var(--sand);color:var(--burnt);font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:50px;margin-top:6px}
+    .minis{display:flex;gap:12px}
+    .mini{background:var(--white);border-radius:var(--r);padding:18px;flex:1;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:7px}
+    .mii{font-size:1.3rem} .mini strong{font-size:.85rem} .mini span{font-size:.72rem;color:var(--muted)}
+    /* SECCIONES */
+    section{padding:86px 6vw}
+    .sl2{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--burnt);margin-bottom:10px;display:inline-block}
+    h2{font-family:var(--fh);font-size:clamp(2rem,3.2vw,2.8rem);line-height:1.15;margin-bottom:14px}
+    .sh{margin-bottom:48px} .sd{font-size:.97rem;color:var(--soft);max-width:500px}
+    /* MENU */
+    .menu-sec{background:var(--white)}
+    .mg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
+    .mc2{background:var(--cream);border-radius:var(--r);padding:26px;border:1px solid transparent;transition:border-color .2s,box-shadow .2s,transform .2s}
+    .mc2:hover{border-color:rgba(139,37,0,.2);box-shadow:var(--shadow);transform:translateY(-4px)}
+    .memi{font-size:2.2rem;margin-bottom:12px}
+    .mc2 h3{font-family:var(--fh);font-size:1.05rem;margin-bottom:8px}
+    .mc2 p{font-size:.84rem;color:var(--soft);line-height:1.65}
+    .mp2{display:inline-block;margin-top:12px;font-size:.8rem;font-weight:600;color:var(--burnt)}
+    /* ABOUT */
+    .about{background:linear-gradient(135deg,var(--sand),var(--cream))}
+    .ai{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto}
+    .aimg{background:linear-gradient(145deg,#f0d9c0,var(--sand));border-radius:20px;height:420px;display:flex;align-items:center;justify-content:center;font-size:5.5rem;box-shadow:var(--shadow-lg)}
+    .fl{list-style:none;display:flex;flex-direction:column;gap:13px;margin-top:22px}
+    .fl li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--soft)}
+    .ck{width:22px;height:22px;border-radius:50%;background:var(--burnt);color:#fff;font-size:.65rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .abs{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+    .ab{background:var(--white);border:1px solid rgba(139,37,0,.2);color:var(--burnt);padding:5px 13px;border-radius:50px;font-size:.76rem;font-weight:500}
+    /* RESERVA */
+    .apt{background:var(--cream)}
+    .fw{max-width:680px;margin:0 auto;background:var(--white);border-radius:20px;padding:44px;box-shadow:var(--shadow);border:1px solid rgba(139,37,0,.08)}
+    .fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .fgr{display:flex;flex-direction:column;gap:7px} .fgr.full{grid-column:1/-1}
+    label{font-size:.8rem;font-weight:600;color:var(--soft);letter-spacing:.02em}
+    input,select,textarea{background:var(--cream);border:1.5px solid rgba(139,37,0,.15);border-radius:8px;padding:11px 15px;font-size:.9rem;font-family:var(--fb);color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none;width:100%}
+    input:focus,select:focus,textarea:focus{border-color:var(--burnt);box-shadow:0 0 0 3px rgba(139,37,0,.08)}
+    textarea{resize:vertical;min-height:90px}
+    .sbtn{width:100%;background:var(--burnt);color:#fff;border:none;cursor:pointer;padding:14px;border-radius:8px;font-size:.93rem;font-weight:600;font-family:var(--fb);transition:background .2s,transform .15s,box-shadow .2s;margin-top:6px}
+    .sbtn:hover{background:var(--ember);transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,37,0,.25)}
+    /* TESTIMONIOS */
+    .tst{background:var(--burnt);color:#fff}
+    .tst h2,.tst .sl2{color:var(--warm)} .tst .sd{color:rgba(255,255,255,.7)}
+    .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto}
+    .tc{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);border-radius:var(--r);padding:24px;transition:background .2s}
+    .tc:hover{background:rgba(255,255,255,.14)}
+    .stars{color:var(--warm);font-size:.88rem;margin-bottom:12px}
+    .tc p{font-size:.87rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:16px}
+    .ta{display:flex;align-items:center;gap:10px}
+    .tav{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+    .tn{font-size:.82rem;font-weight:600} .tr{font-size:.72rem;color:rgba(255,255,255,.5)}
+    /* CONTACTO */
+    .cnt{background:var(--sand)}
+    .ci{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;max-width:1100px;margin:0 auto}
+    .ccs{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+    .cc{background:var(--white);border-radius:var(--r);padding:16px 20px;display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s;box-shadow:0 2px 12px rgba(28,16,8,.07)}
+    .cc:hover{box-shadow:var(--shadow);transform:translateX(4px)}
+    .cic{width:40px;height:40px;border-radius:9px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .clb{font-size:.7rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+    .cv{font-size:.9rem;font-weight:500;margin-top:2px}
+    .mapbox{background:linear-gradient(135deg,var(--sand),#f0d9c0);border-radius:18px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:2.8rem;box-shadow:var(--shadow)}
+    .mapbox span{font-size:.88rem;font-weight:500;color:var(--soft)}
+    .mapbox a{font-size:.78rem;color:#fff;text-decoration:none;background:var(--burnt);padding:7px 16px;border-radius:50px;margin-top:3px}
+    footer{background:var(--dark);color:rgba(255,255,255,.45);text-align:center;padding:26px 6vw;font-size:.8rem}
+    footer strong{color:rgba(255,255,255,.85)}
+    .toast{position:fixed;bottom:28px;right:28px;background:var(--burnt);color:#fff;padding:13px 20px;border-radius:8px;font-size:.88rem;font-weight:500;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:9px;transform:translateY(80px);opacity:0;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .4s;z-index:999}
+    .toast.show{transform:translateY(0);opacity:1}
+    @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fu{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s} .fu.vis{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.hi,.ai,.ci{grid-template-columns:1fr;gap:32px}.hv{display:none}.mg,.tg{grid-template-columns:1fr 1fr}.nl{display:none}.fg{grid-template-columns:1fr}.fw{padding:24px 16px}}
+    @media(max-width:560px){.mg,.tg{grid-template-columns:1fr}section{padding:58px 5vw}}
+  </style>
+</head>
+<body>
+<nav id="nb">
+  <a href="#" class="logo">🔥 La Leña</a>
+  <ul class="nl">
+    <li><a href="#menu">Menú</a></li><li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Reseñas</a></li><li><a href="#reserva" class="ncta">Reservar mesa</a></li>
+  </ul>
+</nav>
+<section class="hero" id="inicio">
+  <div class="hi">
+    <div>
+      <div class="badge">🔥 Cocina de leña · Zapopan, Jalisco</div>
+      <h1>Sabores que <em>encienden</em> el alma</h1>
+      <p class="sub">Cocina mexicana de autor preparada al fuego de leña. Ingredientes locales, recetas de generaciones y una experiencia que no olvidarás.</p>
+      <div class="acts">
+        <a href="#reserva" class="bp">🍽 Reservar mi mesa</a>
+        <a href="#menu" class="bs">Ver el menú</a>
+      </div>
+      <div class="stats">
+        <div><div class="sn">+3K</div><div class="sl">Comensales felices</div></div>
+        <div><div class="sn">8+</div><div class="sl">Años de tradición</div></div>
+        <div><div class="sn">4.9★</div><div class="sl">En Google</div></div>
+      </div>
+    </div>
+    <div class="hv">
+      <div class="hcard">
+        <div class="hav">🍖</div>
+        <div class="hinfo"><h3>La Leña</h3><p>Cocina de fuego · Zapopan, Jalisco</p><span class="htag">✓ Mesas disponibles hoy</span></div>
+      </div>
+      <div class="minis">
+        <div class="mini"><div class="mii">🌽</div><strong>Ingredientes locales</strong><span>Proveedores de Jalisco</span></div>
+        <div class="mini"><div class="mii">🍷</div><strong>Bar completo</strong><span>Mezcales y vinos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="menu-sec" id="menu">
+  <div class="sh fu"><span class="sl2">Lo que cocinamos</span><h2>Nuestro menú estrella</h2><p class="sd">Platos preparados al momento con ingredientes del día. El menú cambia según la temporada.</p></div>
+  <div class="mg">
+    <div class="mc2 fu"><div class="memi">🌮</div><h3>Tacos de Arrachera</h3><p>Arrachera marinada 12 hrs, cocinada en leña. Con guacamole y salsa de chile de árbol.</p><div class="mp2">$185 · 3 tacos</div></div>
+    <div class="mc2 fu"><div class="memi">🥩</div><h3>Costillas al Pastor de Leña</h3><p>Costillas de cerdo con adobo tradicional. 6 horas de cocción lenta sobre brasas.</p><div class="mp2">$285 · porción</div></div>
+    <div class="mc2 fu"><div class="memi">🍲</div><h3>Birria Estilo Jalisco</h3><p>Receta de la abuela. Servida con consomé, tortillas hechas a mano y cebolla morada.</p><div class="mp2">$165 · plato</div></div>
+    <div class="mc2 fu"><div class="memi">🌶</div><h3>Chiles en Nogada</h3><p>Temporada de septiembre. Poblano relleno, nogada y granada. Presentación artesanal.</p><div class="mp2">$195 · pieza</div></div>
+    <div class="mc2 fu"><div class="memi">🦐</div><h3>Camarones a la Diabla</h3><p>Camarones del Pacífico en salsa de chiles rojos tatemados. Acompañado de arroz blanco.</p><div class="mp2">$245 · porción</div></div>
+    <div class="mc2 fu"><div class="memi">🍮</div><h3>Flan Napolitano de la Casa</h3><p>Receta propia con toque de café de olla y cajeta. El postre que nadie puede resistir.</p><div class="mp2">$85 · pieza</div></div>
+  </div>
+</section>
+<section class="about" id="nosotros">
+  <div class="ai">
+    <div class="fu"><div class="aimg">🔥</div></div>
+    <div class="fu">
+      <span class="sl2">Nuestra historia</span>
+      <h2>8 años cocinando con alma</h2>
+      <p class="sd">La Leña nació de la pasión del chef Ernesto Solís por rescatar recetas tradicionales jaliscienses. Hoy somos un referente de la cocina de fuego en Zapopan.</p>
+      <ul class="fl">
+        <li><span class="ck">✓</span>Chef con estudios en el Instituto Culinario de México</li>
+        <li><span class="ck">✓</span>Ingredientes 100% locales de productores jaliscienses</li>
+        <li><span class="ck">✓</span>Menú de temporada, siempre fresco y diferente</li>
+        <li><span class="ck">✓</span>Espacio para eventos privados y celebraciones</li>
+      </ul>
+      <div class="abs">
+        <span class="ab">🏆 Premio GDL 2022</span><span class="ab">🌽 Ingredientes locales</span>
+        <span class="ab">🍷 Carta de vinos</span><span class="ab">🎉 Eventos privados</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="apt" id="reserva">
+  <div class="sh fu" style="text-align:center"><span class="sl2">Haz tu reservación</span><h2>Asegura tu mesa</h2><p class="sd" style="margin:0 auto">Cupo limitado. Reserva con anticipación para garantizar tu lugar.</p></div>
+  <div class="fw fu">
+    <form onsubmit="handleForm(event)">
+      <div class="fg">
+        <div class="fgr"><label>Nombre</label><input type="text" placeholder="Ej. Sofía Martínez" required/></div>
+        <div class="fgr"><label>WhatsApp</label><input type="tel" placeholder="33 1234 5678" required/></div>
+        <div class="fgr"><label>Número de personas</label>
+          <select required><option value="" disabled selected>¿Cuántos son?</option>
+            <option>1 persona</option><option>2 personas</option><option>3-4 personas</option>
+            <option>5-6 personas</option><option>7-10 personas</option><option>Más de 10 (evento)</option>
+          </select></div>
+        <div class="fgr"><label>Fecha y hora</label><input type="datetime-local" id="fd" required/></div>
+        <div class="fgr full"><label>Nota especial (alergias, ocasión, etc.)</label><textarea placeholder="Ej. cumpleaños, alergia al gluten, mesa exterior..."></textarea></div>
+      </div>
+      <button type="submit" class="sbtn" id="sb">🍽 Confirmar mi reservación</button>
+    </form>
+  </div>
+</section>
+<section class="tst" id="testimonios">
+  <div class="sh fu"><span class="sl2">Experiencias reales</span><h2>Lo que dicen nuestros comensales</h2><p class="sd">Más de 3,000 familias han vivido La Leña.</p></div>
+  <div class="tg">
+    <div class="tc fu"><div class="stars">★★★★★</div><p>"Las costillas de leña son lo mejor que he comido en Zapopan, sin exagerar. El sabor ahumado es increíble. Ya reservé para volver el próximo fin de semana."</p><div class="ta"><div class="tav">👩</div><div><div class="tn">Daniela Herrera</div><div class="tr">Andares, Zapopan</div></div></div></div>
+    <div class="tc fu"><div class="stars">★★★★★</div><p>"Celebramos nuestro aniversario aquí y fue perfecto. La atención es de primera y la comida llegó rápido. El flan de la casa es simplemente espectacular."</p><div class="ta"><div class="tav">👨</div><div><div class="tn">Andrés y Sofía</div><div class="tr">Providencia, GDL</div></div></div></div>
+    <div class="tc fu"><div class="stars">★★★★★</div><p>"Vine de visita a Guadalajara y vine aquí por las reseñas de Google. No me arrepiento. Los tacos de arrachera y el mezcal de la casa son para repetir."</p><div class="ta"><div class="tav">👨</div><div><div class="tn">Roberto Sánchez</div><div class="tr">Ciudad de México</div></div></div></div>
+  </div>
+</section>
+<section class="cnt" id="contacto">
+  <div class="ci">
+    <div class="fu">
+      <span class="sl2">Visítanos</span><h2>¿Cómo llegar?</h2>
+      <p class="sd">Estamos en una zona céntrica de Zapopan con estacionamiento gratuito.</p>
+      <div class="ccs">
+        <a href="tel:3312345678" class="cc"><div class="cic">📞</div><div><div class="clb">Reservaciones</div><div class="cv">33 1234 5678</div></div></a>
+        <a href="https://wa.me/5213312345678" class="cc"><div class="cic">💬</div><div><div class="clb">WhatsApp</div><div class="cv">Mensaje directo</div></div></a>
+        <div class="cc"><div class="cic">📍</div><div><div class="clb">Dirección</div><div class="cv">Av. Américas 1540, Zapopan, Jalisco</div></div></div>
+        <div class="cc"><div class="cic">🕐</div><div><div class="clb">Horario</div><div class="cv">Mar–Dom 1:30pm–11pm</div></div></div>
+      </div>
+    </div>
+    <div class="fu"><div class="mapbox">🗺️<span>Av. Américas 1540, Zapopan</span><a href="#">Ver en Google Maps →</a></div></div>
+  </div>
+</section>
+<footer>© 2025 <strong>La Leña — Cocina de Fuego</strong> · Zapopan, Jalisco<br/>
+Sitio web por <strong><a href="https://diegoperezc.vercel.app" style="color:rgba(255,255,255,.65);text-decoration:none">Diego Pérez</a></strong> 🚀</footer>
+<div class="toast" id="toast">🍽 ¡Reservación recibida! Te confirmamos pronto.</div>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('nb').classList.toggle('sc',scrollY>20));
+  const obs=new IntersectionObserver((e)=>e.forEach((x,i)=>{if(x.isIntersecting){setTimeout(()=>x.target.classList.add('vis'),i*80);obs.unobserve(x.target)}}),{threshold:.12});
+  document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+  const fd=document.getElementById('fd');if(fd){const n=new Date();n.setHours(n.getHours()+2);fd.min=n.toISOString().slice(0,16)}
+  function handleForm(e){e.preventDefault();const b=document.getElementById('sb');b.textContent='⏳ Reservando...';b.disabled=true;setTimeout(()=>{b.textContent='✅ ¡Mesa reservada!';const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);e.target.reset();setTimeout(()=>{b.textContent='🍽 Confirmar mi reservación';b.disabled=false},3000)},1200)}
+</script>
+</body></html>
